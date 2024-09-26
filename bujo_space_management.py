@@ -51,7 +51,7 @@ class Page:
             for idx in range(2, 11):
                 distribution = self.distribute_bullets(total_bullets, idx)
                 print(
-                    f"""distribution ({total_bullets} bullets, {idx} sections): {distribution}"""
+                        f"""distribution ({total_bullets} bullets, {idx:2} sections): {distribution}"""
                 )
 
 
