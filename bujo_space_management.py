@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-"""This script compute the distribution of section of a page of a bullet journal."""
+"""This script compute the distribution of section of a page of a bullet journal.
+
+The first argument is the width of the page in term of bullet spacing and
+the second is the height.
+"""
+
 import argparse
 
 
@@ -45,15 +50,28 @@ class Page:
             print(f"""{40*"-"}""")
             for idx in range(2, 11):
                 distribution = self.distribute_bullets(total_bullets, idx)
-                print(f"""distribution ({total_bullets} bullets, {idx} sections): {distribution}""")
+                print(
+                    f"""distribution ({total_bullets} bullets, {idx} sections): {distribution}"""
+                )
 
 
-parser = argparse.ArgumentParser(description="""Process the distribution from
-                                 the width and the height.""")
-parser.add_argument('width', metavar='width', type=int, help="""the width in
-                    bullet of the page.""")
-parser.add_argument('height', metavar='height', type=int, help="""the height
-                    in bullet of the page.""")
+parser = argparse.ArgumentParser(
+    description="""Process the distribution from the width and the height."""
+)
+parser.add_argument(
+    "width",
+    metavar="width",
+    type=int,
+    help="""the width in
+                    bullet of the page.""",
+)
+parser.add_argument(
+    "height",
+    metavar="height",
+    type=int,
+    help="""the height
+                    in bullet of the page.""",
+)
 args = parser.parse_args()
 
 page = Page(args.width, args.height)
