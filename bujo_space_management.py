@@ -11,8 +11,9 @@ import argparse
 class Page:
     """This class reprensent a sheet with width and height."""
 
-    def __init__(self, width, height):
+    def __init__(self, max_sec, width, height):
         """Initiate the class."""
+        self.max_sec = max_sec
         self.width = width
         self.height = height
 
@@ -48,7 +49,7 @@ class Page:
         """
         for total_bullets in (self.width, self.height):
             print(f"""{40*"-"}""")
-            for idx in range(2, 11):
+            for idx in range(2, self.max_sec + 1):
                 distribution = self.distribute_bullets(total_bullets, idx)
                 print(
                         f"""distribution ({total_bullets} bullets, {idx:2} sections): {distribution}"""
@@ -59,20 +60,25 @@ parser = argparse.ArgumentParser(
     description="""Process the distribution from the width and the height."""
 )
 parser.add_argument(
+    "max_sec",
+    metavar="max_sec",
+    type=int,
+    help="""the maximum number of sections.""",
+)
+parser.add_argument(
     "width",
     metavar="width",
     type=int,
-    help="""the width in
-                    bullet of the page.""",
+    help="""the width in bullet of the page.""",
 )
 parser.add_argument(
     "height",
     metavar="height",
     type=int,
-    help="""the height
-                    in bullet of the page.""",
+    help="""the height in bullet of the page.""",
 )
+
 args = parser.parse_args()
 
-page = Page(args.width, args.height)
+page = Page(args.max_sec, args.width, args.height)
 page.print_distributions()
